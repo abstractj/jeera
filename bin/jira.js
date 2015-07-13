@@ -30,6 +30,7 @@ requirejs([
     .option('-w, --watching',  'List all watched issues by type')
     .option('-m, --mention',  'List all by mention based on the current user')
     .option('-r, --recent',  'List all the recent issues created by project')
+    .option('-c, --created',  'List all open issues created by the current user')
     .action(function (options) {
       auth.setConfig(function (auth) {
         if (auth) {
@@ -44,7 +45,9 @@ requirejs([
           } else if (options.watching) {
             ls.showAllWatching(options.type);
           } else if (options.mention) {
-              ls.showAllMentioned(options.type);
+            ls.showAllMentioned(options.type);
+          } else if (options.created) {
+            ls.showAllCreated();
           } else {
             ls.showAll(options.type);
           }
